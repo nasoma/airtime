@@ -26,12 +26,6 @@ balance_value = balance.get('credit_balance')
 final_float = float(balance_value.lstrip('KES '))
 
 
-# @main.route('/', methods=['POST', 'GET'])
-# def index():
-#     numbers = TelephoneNumbers.query.all()
-#     return render_template('index.html', numbers=numbers)
-
-
 @main.route('/send_sms', methods=['POST', 'GET'])
 def send_sms():
     form = SendSMS()
