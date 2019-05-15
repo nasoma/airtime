@@ -2,6 +2,7 @@ from flask import render_template, Blueprint, flash, redirect, url_for
 from app import app, db
 from app.main.forms import SendSMS, SendAirtime, AddNumber
 from app.models import TelephoneNumbers, AirtimeSent
+from flask_login import login_required
 import africastalking
 
 
@@ -27,6 +28,7 @@ final_float = float(balance_value.lstrip('KES '))
 
 
 @main.route('/send_sms', methods=['POST', 'GET'])
+@login_required
 def send_sms():
     form = SendSMS()
     to = form.to.data
@@ -52,6 +54,7 @@ def send_sms():
 
 
 @main.route('/send_airtime', methods=['POST', 'GET'])
+@login_required
 def send_airtime():
     form = SendAirtime()
     africastalking.initialize(username, apikey)
@@ -81,18 +84,21 @@ def send_airtime():
 
 
 @main.route('/telephones/', methods=['POST', 'GET'])
+@login_required
 def telephones():
     numbers = TelephoneNumbers.query.all()
     return render_template('telephones.html', numbers=numbers, final_float=final_float)
 
 
 @main.route('/telephones/<int:number_id>/', methods=['GET'])
+@login_required
 def number(number_id):
     number = TelephoneNumbers.query.get_or_404(number_id)
     return render_template('number.html', title=number.tel, number=number)
 
 
 @main.route('/telephones/<int:number_id>/delete', methods=['POST', 'GET'])
+@login_required
 def delete_number(number_id):
     number_to_delete = TelephoneNumbers.query.get_or_404(number_id)
     db.session.delete(number_to_delete)
@@ -102,6 +108,7 @@ def delete_number(number_id):
 
 
 @main.route('/new', methods=['POST', 'GET'])
+@login_required
 def new_number():
     form = AddNumber()
     if form.validate_on_submit():
@@ -114,6 +121,7 @@ def new_number():
 
 
 @main.route('/dashboard', methods=['POST', 'GET'])
+@login_required
 def get_records():
     records = AirtimeSent.query.all()
     return render_template('dashboard.html', records=records)
