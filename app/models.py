@@ -1,4 +1,5 @@
 from app import db
+from datetime import datetime
 
 
 class TelephoneNumbers(db.Model):
@@ -14,6 +15,7 @@ class AirtimeSent(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     amount_sent = db.Column(db.Integer)
     sent_to = db.Column(db.String(20))
+    date_sent = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
     def __repr__(self):
         return f"Amount('{self.amount_sent}', '{self.sent_to}')"
@@ -21,7 +23,3 @@ class AirtimeSent(db.Model):
 
 def numbers_query():
     return TelephoneNumbers.query
-
-
-
-

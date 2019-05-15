@@ -3,3 +3,9 @@ window.setTimeout(function() {
         $(this).remove(); 
     });
 }, 4000);
+
+
+$(document).ready( function () {
+    $('#table_id').DataTable();
+} );
+

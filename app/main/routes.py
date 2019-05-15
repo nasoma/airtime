@@ -60,9 +60,6 @@ def send_sms():
 @main.route('/send_airtime', methods=['POST', 'GET'])
 def send_airtime():
     form = SendAirtime()
-    to = form.to.data
-    value = form.airtime_value.data
-
     africastalking.initialize(username, apikey)
 
     airtime = africastalking.Airtime
@@ -70,13 +67,17 @@ def send_airtime():
     application = africastalking.Application
 
     if form.validate_on_submit():
+        to = form.to.data
+        saved_tel = to.tel
+        value = form.airtime_value.data
+
         try:
-            airtime.send(to, value, currency_code=app.config['AT_CURRENCY_CODE'])
-            # save_airtime = AirtimeSent(amount_sent=value, sent_to=to)
-            # db.session.add(save_airtime)
-            # db.session.commit()
-            res = application.fetch_application_data()
-            my_balance = res['UserData']['balance']
+            #airtime.send(to, value, currency_code=app.config['AT_CURRENCY_CODE'])
+            save_airtime = AirtimeSent(amount_sent=value, sent_to=saved_tel)
+            db.session.add(save_airtime)
+            db.session.commit()
+            #res = application.fetch_application_data()
+            #my_balance = res['UserData']['balance']
             flash(f'You have successfully send airtime worth KShs: {value} to {to}! Your balance is {my_balance}',
                   'success')
         except Exception as e:
@@ -116,3 +117,9 @@ def new_number():
         flash(f'{new_number} added successfully.', 'success')
         return redirect(url_for('main.telephones'))
     return render_template('new.html', form=form)
+
+
+@main.route('/dashboard', methods=['POST', 'GET'])
+def get_records():
+    records = AirtimeSent.query.all()
+    return render_template('dashboard.html', records=records)

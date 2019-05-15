@@ -2,14 +2,29 @@
 
 {% import 'bootstrap/wtf.html' as wtf %}
 
+
 {% block maincontent %}
 
     <div class="container">
-        <div class="col-md-4 col-md-offset-4">
-            {{ number.tel }}
-        </div>
+        <table id="table_id" class="table table-hover table-striped table-bordered ">
+            <thead>
+            <tr>
+                <th>To:</th>
+                <th>Amount</th>
+                <th>When</th>
+            </tr>
+            </thead>
+            <tr>
+                {% for record in records %}
+                    <td> {{ record.sent_to }}</td>
+                    <td>{{ record.amount_sent }}</td>
+                    <td> {{ moment(record.date_sent).format('DD-MM-YYYY, h:mm:ss a') }}</td>
+            </tr>
 
-        {{ e }}
-
+                {% endfor %}
+        </table>
     </div>
+
 {% endblock %}
+
+

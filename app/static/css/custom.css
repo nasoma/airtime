@@ -2,7 +2,6 @@ body {
 	background-color: #F1F1F1;
 	font-family: 'Lato', sans-serif;
 }
-
 .bg-balance {
 	background-color: #F2DEDE !important;
 	color: #a94442;
@@ -22,7 +21,6 @@ body {
 	font-size: 20px;
 	text-align: center;
 }
-
 .nav>li>a {
 	font-size: 16px
 }
@@ -34,7 +32,6 @@ body {
 .navbar-inverse {
 	border-color: #02689F
 }
-
 form input, form textarea, form select {
 	border-radius: 0 !important;
 	border: 1px solid #0398DB;
@@ -63,8 +60,6 @@ form input, form textarea, form select {
 	background: #0288D1;
 	color: #fff !important;
 }
-
-
 .main-body {
 	margin-bottom: 120px
 }
@@ -78,6 +73,9 @@ form input, form textarea, form select {
 .p-15 {
 	padding: 5px 15px
 }
+#table_id_filter input, #table_id_filter select {
+	border: 1px solid #CEDBDB !important;
+}
 .rounded-0 {
 	-webkit-border-radius: 0 !important;
 	-moz-border-radius: 0 !important;
@@ -88,12 +86,18 @@ form input, form textarea, form select {
 	-moz-border-radius: 2px !important;
 	border-radius: 2px !important;
 }
+#table_id_wrapper label {
+	font-weight: normal
+}
 .rounded-4 {
 	-webkit-border-radius: 4px !important;
 	-moz-border-radius: 4px !important;
 	border-radius: 4px !important;
 }
-
+#table_id thead {
+	background: #D7D7D7;
+	color: #000
+}
 .m-4 {
 	margin-bottom: 5px
 }
@@ -102,7 +106,6 @@ form input, form textarea, form select {
 		float: right
 	}
 }
-
 .login .navbar {
 	margin-bottom: 0;
 }

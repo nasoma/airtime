@@ -10,13 +10,13 @@
 
        <div class="table-responsive">
             <table class="table table-hover table-striped table-bordered ">
-            <thead>
-            <tr>
-                <th>Assigned Name</th>
-                <th>Telephone Number</th>
-                <th>Delete</th>
-            </tr>
-            </thead>
+                <thead>
+                <tr>
+                    <th>Assigned Name</th>
+                    <th>Telephone Number</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
             {% for number in numbers %}
                 <tr>
                     <td>{{ number.alias }}</td>
@@ -28,7 +28,7 @@
                 </tr>
 
             {% endfor %}
-        </table>
+            </table>
        </div>
     </div>
 

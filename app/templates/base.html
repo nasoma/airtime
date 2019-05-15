@@ -5,12 +5,18 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
     <link href="//cdn.materialdesignicons.com/3.6.95/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
 
 {% endblock %}
 
 {% block scripts %}
     {{ super() }}
     <script src="{{ url_for('static', filename = 'js/main.js') }}"></script>
+    {{ moment.include_jquery() }}
+    {{ moment.include_moment() }}
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
 {% endblock %}
 
 {% block title %} Airtime Purchase and SMS Sending App  {% endblock %}
@@ -30,11 +36,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a href="{{ url_for('main.index') }}" class="navbar-brand">Airtime/SMS APP</a>
-
-
                     </div>
-
-
 
                 </div>
                 <div class="col-md-9">
@@ -44,18 +46,22 @@
                                 class="mdi mdi-account-badge-horizontal-outline"
                                 aria-hidden="true"></i> Accounts</a></li>
                         <li><a href="{{ url_for('main.send_airtime') }}"><i class="mdi mdi-cellphone"
-                                                                            aria-hidden="true"></i> Buy/Send Airtime</a>
+                                                                            aria-hidden="true"></i> Airtime</a>
                         </li>
                         <li><a href="{{ url_for('main.send_sms') }}"><i class="mdi mdi-message-text-outline"
-                                                                        aria-hidden="true"></i> Send SMS </a></li>
+                                                                        aria-hidden="true"></i>SMS </a></li>
                         <li><a href=""><i class="mdi mdi-login" aria-hidden="true"></i>
                             Logout</a></li>
-
 
                         <li><a href="#"><i class="mdi mdi-login" aria-hidden="true"></i>
                             Login</a>
                         </li>
-                        <li>  <a class="" href="#"><span class="balance">Bal: {{ credit_balance }}</span></a></li>
+
+                        <li><a href="{{ url_for('main.get_records') }}"><i class="mdi mdi-login" aria-hidden="true"></i>
+                            Dashboard</a>
+                        </li>
+
+                        <li> <a class="" href="#"><span class="balance">Bal: {{ credit_balance }}</span></a></li>
                     </ul>
                 </div>
             </div>
