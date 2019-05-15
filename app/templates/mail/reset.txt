@@ -1,0 +1,11 @@
+Hi, {{ username | capitalize }}
+
+To reset your password, visit the link:
+    {{ url_for('users.reset_token', token=token, _external=True) }}
+
+If you did not make this request, please ignore this email.
+
+----
+Airtime
+
+

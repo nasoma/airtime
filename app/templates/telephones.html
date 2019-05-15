@@ -6,6 +6,20 @@
 {% block maincontent %}
 
     <div class="container">
+
+      {% if current_user.is_authenticated %}
+
+    {% if final_float < 150 %}
+
+        <div class="well bg-balance">
+            Your balance is running low. Please topup.
+        </div>
+
+    {% endif %}
+
+    {% endif %}
+
+
         <a class="btn btn-success rounded-2 m-4" href="{{ url_for('main.new_number') }}">Add Number</a>
 
        <div class="table-responsive">

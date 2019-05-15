@@ -3,11 +3,15 @@
 
 {% block maincontent %}
 
+    {% if current_user.is_authenticated %}
+
     {% if final_float < 150 %}
 
         <div class="well bg-balance">
             Your balance is running low. Please topup.
         </div>
+
+    {% endif %}
 
     {% endif %}
 

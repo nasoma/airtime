@@ -5,7 +5,3 @@ window.setTimeout(function() {
 }, 4000);
 
 
-$(document).ready( function () {
-    $('#table_id').DataTable();
-} );
-

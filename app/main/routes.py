@@ -26,10 +26,10 @@ balance_value = balance.get('credit_balance')
 final_float = float(balance_value.lstrip('KES '))
 
 
-@main.route('/', methods=['POST', 'GET'])
-def index():
-    numbers = TelephoneNumbers.query.all()
-    return render_template('index.html', numbers=numbers, final_float=final_float)
+# @main.route('/', methods=['POST', 'GET'])
+# def index():
+#     numbers = TelephoneNumbers.query.all()
+#     return render_template('index.html', numbers=numbers)
 
 
 @main.route('/send_sms', methods=['POST', 'GET'])
@@ -68,7 +68,7 @@ def send_airtime():
 
     if form.validate_on_submit():
         to = form.to.data
-        saved_tel = to.tel
+        saved_tel = to.alias
         value = form.airtime_value.data
 
         try:
@@ -89,7 +89,7 @@ def send_airtime():
 @main.route('/telephones/', methods=['POST', 'GET'])
 def telephones():
     numbers = TelephoneNumbers.query.all()
-    return render_template('telephones.html', numbers=numbers)
+    return render_template('telephones.html', numbers=numbers, final_float=final_float)
 
 
 @main.route('/telephones/<int:number_id>/', methods=['GET'])

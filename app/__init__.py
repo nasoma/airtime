@@ -4,6 +4,7 @@ from flask_login import LoginManager
 from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
 from flask_moment import Moment
+from flask_bcrypt import Bcrypt
 import os
 
 app = Flask(__name__)
@@ -18,9 +19,12 @@ login_manager = LoginManager(app)
 moment = Moment(app)
 db = SQLAlchemy(app)
 mail = Mail(app)
+bcrypt = Bcrypt(app)
 
 from app.main.routes import main
 from app.errors.handlers import errors
+from app.users.routes import users
 
 app.register_blueprint(main)
 app.register_blueprint(errors)
+app.register_blueprint(users)

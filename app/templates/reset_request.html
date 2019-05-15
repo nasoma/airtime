@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block maincontent %}
+    <p></p>
+    <div class="update col-md-6 col-md-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">Reset Password</div>
+            <div class="panel-body">
+                {{ wtf.quick_form(form, extra_classes='myform', button_map={'submit':'primary rounded-4 p-15'}) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
+
+
