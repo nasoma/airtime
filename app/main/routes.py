@@ -2,7 +2,6 @@ from flask import render_template, Blueprint, flash, redirect, url_for
 from app import app, db
 from app.main.forms import SendSMS, SendAirtime, AddNumber
 from app.models import TelephoneNumbers
-
 import africastalking
 
 main = Blueprint('main', __name__)
@@ -14,7 +13,6 @@ apikey = app.config['AT_API_KEY']
 @main.route('/', methods=['POST', 'GET'])
 def index():
     numbers = TelephoneNumbers.query.all()
-
     return render_template('index.html', numbers=numbers)
 
 

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% import 'bootstrap/wtf.html' as wtf %}
+
+
+{% block maincontent %}
+
+    <div class="container">
+        <a class="btn btn-success rounded-2 m-4" href="{{ url_for('main.new_number') }}">Add Number</a>
+
+        <table class="table table-hover table-striped table-bordered ">
+            <thead>
+            <tr>
+                <th>Assigned Name</th>
+                <th>Telephone Number</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            {% for number in numbers %}
+                <tr>
+                    <td>{{ number.alias }}</td>
+                    <td>{{ number.tel }}</td>
+                    <td class="delete-column">
+                        <a class="btn btn-danger rounded-0"
+                           href="{{ url_for('main.delete_number', number_id=number.id) }}">Delete</a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+        </table>
+    </div>
+
+{% endblock %}

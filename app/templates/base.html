@@ -1,0 +1,96 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+    <link href="//cdn.materialdesignicons.com/3.6.95/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename = 'js/main.js') }}"></script>
+{% endblock %}
+
+{% block title %} Airtime Purchase and SMS Sending App  {% endblock %}
+
+{% block navbar %}
+
+    <div class="navbar navbar-inverse bg-red" role="navigation">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle"
+                                data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle Navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="{{ url_for('main.index') }}" class="navbar-brand">Airtime/SMS APP</a>
+                    </div>
+
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="{{ url_for('main.index') }}"><i class="mdi mdi-home"
+                                                                         aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="col-md-9">
+                    <ul class="nav navbar-nav navbar-collapse collapse pull-right-lg">
+                        <li><a href="{{ url_for('main.telephones') }}"><i
+                                class="mdi mdi-account-badge-horizontal-outline"
+                                aria-hidden="true"></i> Accounts</a></li>
+                        <li><a href="{{ url_for('main.send_airtime') }}"><i class="mdi mdi-cellphone"
+                                                                            aria-hidden="true"></i> Buy/Send Airtime</a>
+                        </li>
+                        <li><a href="{{ url_for('main.send_sms') }}"><i class="mdi mdi-message-text-outline"
+                                                                        aria-hidden="true"></i> Send SMS </a></li>
+                        <li><a href=""><i class="mdi mdi-login" aria-hidden="true"></i>
+                            Logout</a></li>
+
+
+                        <li><a href="#"><i class="mdi mdi-login" aria-hidden="true"></i>
+                            Login</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="container main-body">
+        <div class="row">
+            <div class="col-md-12">
+                {% with messages =  get_flashed_messages(with_categories=True) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                {% block maincontent %}{% endblock %}
+            </div>
+
+        </div>
+        <div class="footer navbar-fixed-bottom m4 ">
+            <div class="container">&copy; 2019. Airtime</div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
