@@ -4,10 +4,21 @@ from app.main.forms import SendSMS, SendAirtime, AddNumber
 from app.models import TelephoneNumbers
 import africastalking
 
+
 main = Blueprint('main', __name__)
 
 username = app.config['AT_USERNAME']
 apikey = app.config['AT_API_KEY']
+
+
+@app.context_processor
+def get_balance():
+    africastalking.initialize(username, apikey)
+    application = africastalking.Application
+    results = application.fetch_application_data()
+    credit_balance = results['UserData']['balance']
+
+    return dict(credit_balance=credit_balance)
 
 
 @main.route('/', methods=['POST', 'GET'])
