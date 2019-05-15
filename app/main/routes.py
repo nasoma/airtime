@@ -1,7 +1,7 @@
 from flask import render_template, Blueprint, flash, redirect, url_for
 from app import app, db
 from app.main.forms import SendSMS, SendAirtime, AddNumber
-from app.models import TelephoneNumbers
+from app.models import TelephoneNumbers, AirtimeSent
 import africastalking
 
 
@@ -21,10 +21,15 @@ def get_balance():
     return dict(credit_balance=credit_balance)
 
 
+balance = get_balance()
+balance_value = balance.get('credit_balance')
+final_float = float(balance_value.lstrip('KES '))
+
+
 @main.route('/', methods=['POST', 'GET'])
 def index():
     numbers = TelephoneNumbers.query.all()
-    return render_template('index.html', numbers=numbers)
+    return render_template('index.html', numbers=numbers, final_float=final_float)
 
 
 @main.route('/send_sms', methods=['POST', 'GET'])
@@ -67,6 +72,9 @@ def send_airtime():
     if form.validate_on_submit():
         try:
             airtime.send(to, value, currency_code=app.config['AT_CURRENCY_CODE'])
+            # save_airtime = AirtimeSent(amount_sent=value, sent_to=to)
+            # db.session.add(save_airtime)
+            # db.session.commit()
             res = application.fetch_application_data()
             my_balance = res['UserData']['balance']
             flash(f'You have successfully send airtime worth KShs: {value} to {to}! Your balance is {my_balance}',

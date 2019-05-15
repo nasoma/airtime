@@ -23,7 +23,7 @@ class SendAirtime(FlaskForm):
     airtime_value = IntegerField('Airtime Value',
                                  render_kw={'placeholder': 'Airtime value'},
                                  validators=[DataRequired(),
-                                             NumberRange(min=10, max=4000,
+                                             NumberRange(min=1, max=4000,
                                                          message='Airtime value must be between Ksh 5 - 4000')])
 
     submit_send_airtime = SubmitField('Send')

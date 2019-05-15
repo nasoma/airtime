@@ -3,15 +3,12 @@
 
 {% block maincontent %}
 
+    {% if final_float < 150 %}
 
+        <div class="well bg-balance">
+            Your balance is running low. Please topup.
+        </div>
 
-
-{{ credit_balance2 }}
-
-    {{ this }}
-
-    {{ huha }}
-
-
+    {% endif %}
 
 {% endblock %}
