@@ -48,7 +48,7 @@ class AirtimeSent(db.Model):
     date_sent = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
     def __repr__(self):
-        return f"Amount('{self.amount_sent}', '{self.sent_to}')"
+        return f" '{self.sent_to}' : '{self.amount_sent}'"
 
 
 def numbers_query():

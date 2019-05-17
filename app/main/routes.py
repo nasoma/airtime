@@ -1,8 +1,9 @@
-from flask import render_template, Blueprint, flash, redirect, url_for
+from flask import render_template, Blueprint, flash, redirect, url_for, jsonify
 from app import app, db
 from app.main.forms import SendSMS, SendAirtime, AddNumber
 from app.models import TelephoneNumbers, AirtimeSent
 from flask_login import login_required
+import pandas as pd
 import africastalking
 
 
@@ -124,6 +125,19 @@ def new_number():
 @login_required
 def get_records():
     records = AirtimeSent.query.all()
-    return render_template('dashboard.html', records=records)
+    data = db.session.execute("SELECT * FROM airtime_sent").fetchall()
+    dataframe = pd.DataFrame(data, columns=['ID', 'Amount', 'Name', 'Time'])
+    df = dataframe.drop(columns=['Time', 'ID'], index=None)
+    total_per_user = df.groupby(['Name'], as_index=False).sum().sort_values(by=['Amount'], ascending=False)
+    labels = total_per_user['Name'].values.tolist()
+    values = total_per_user['Amount'].values.tolist()
+    colors = [
+        "#F7464A", "#46BFBD", "#FDB45C", "#FEDCBA",
+        "#ABCDEF", "#DDDDDD", "#ABCABC", "#4169E1",
+        "#C71585", "#FF4500", "#FEDCBA", "#46BFBD"]
+
+    user_table = total_per_user.to_html(classes=['table', 'table-bordered', 'table-striped', 'table-hover'])
+
+    return render_template('dashboard.html', records=records, user_table=user_table,  max=170, set=zip(values, labels, colors))
 
 
