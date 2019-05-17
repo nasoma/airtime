@@ -78,26 +78,26 @@ def send_airtime():
             flash(f'You have successfully send airtime worth KShs: {value} to {to}! Your balance is {my_balance}',
                   'success')
         except Exception as e:
-            flash(f'Error! {e}', 'danger')
+            flash(f'Airtime transfer failed: {e}', 'danger')
 
     return render_template('send_airtime.html', form=form)
 
 
-@main.route('/telephones/', methods=['POST', 'GET'])
+@main.route('/accounts/', methods=['POST', 'GET'])
 @login_required
 def telephones():
     numbers = TelephoneNumbers.query.all()
     return render_template('telephones.html', numbers=numbers, final_float=final_float)
 
 
-@main.route('/telephones/<int:number_id>/', methods=['GET'])
+@main.route('/accounts/<int:number_id>/', methods=['GET'])
 @login_required
 def number(number_id):
     number = TelephoneNumbers.query.get_or_404(number_id)
     return render_template('number.html', title=number.tel, number=number)
 
 
-@main.route('/telephones/<int:number_id>/delete', methods=['POST', 'GET'])
+@main.route('/accounts/<int:number_id>/delete', methods=['POST', 'GET'])
 @login_required
 def delete_number(number_id):
     number_to_delete = TelephoneNumbers.query.get_or_404(number_id)
@@ -125,3 +125,5 @@ def new_number():
 def get_records():
     records = AirtimeSent.query.all()
     return render_template('dashboard.html', records=records)
+
+

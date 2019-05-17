@@ -12,7 +12,7 @@ users = Blueprint('users', __name__)
 @users.route('/login', methods=['POST', 'GET'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('main.index'))
+        return redirect(url_for('main.telephones'))
     login_form = LoginForm()
     if login_form.validate_on_submit():
         user = User.query.filter_by(username=login_form.username.data).first()
@@ -23,7 +23,7 @@ def login():
             if next_page:
                 return redirect(next_page)
             else:
-                return redirect(url_for('main.telephones'))
+                return redirect(url_for('users.login'))
         else:
             flash('Login unsuccessful, please check your credentials!', 'danger')
     return render_template('login.html', loginform=login_form)
