@@ -128,7 +128,8 @@ def get_records():
     data = db.session.execute("SELECT * FROM airtime_sent").fetchall()
     dataframe = pd.DataFrame(data, columns=['ID', 'Amount', 'Name', 'Time'])
     df = dataframe.drop(columns=['Time', 'ID'], index=None)
-    total_per_user = df.groupby(['Name'], as_index=False).sum().sort_values(by=['Amount'], ascending=False)
+    total_per_user = df.groupby(['Name'], as_index=False,).sum().sort_values(by=['Amount'], ascending=False)
+    with_name_index = total_per_user.set_index('Name')
     labels = total_per_user['Name'].values.tolist()
     values = total_per_user['Amount'].values.tolist()
     colors = [
@@ -136,7 +137,7 @@ def get_records():
         "#ABCDEF", "#DDDDDD", "#ABCABC", "#4169E1",
         "#C71585", "#FF4500", "#FEDCBA", "#46BFBD"]
 
-    user_table = total_per_user.to_html(classes=['table', 'table-bordered', 'table-striped', 'table-hover'])
+    user_table = with_name_index .to_html(classes=['table', 'table-bordered', 'table-striped', 'table-hover'])
 
     return render_template('dashboard.html', records=records, user_table=user_table,  max=170, set=zip(values, labels, colors))
 
