@@ -132,13 +132,9 @@ def get_records():
     with_name_index = total_per_user.set_index('Name')
     labels = total_per_user['Name'].values.tolist()
     values = total_per_user['Amount'].values.tolist()
-    colors = [
-        "#F7464A", "#46BFBD", "#FDB45C", "#FEDCBA",
-        "#ABCDEF", "#DDDDDD", "#ABCABC", "#4169E1",
-        "#C71585", "#FF4500", "#FEDCBA", "#46BFBD"]
 
     user_table = with_name_index .to_html(classes=['table', 'table-bordered', 'table-striped', 'table-hover'])
 
-    return render_template('dashboard.html', records=records, user_table=user_table,  max=170, set=zip(values, labels, colors))
+    return render_template('dashboard.html', records=records, user_table=user_table, values=values, labels=labels)
 
 
