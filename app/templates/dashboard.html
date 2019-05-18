@@ -20,14 +20,40 @@
                 </thead>
                 <tr>
                     {% for record in records %}
-                        <td> {{ record.sent_to }}</td>
+                        <td>{{ record.sent_to }}</td>
                         <td>{{ record.amount_sent }}</td>
-                        <td> {{ moment(record.date_sent).format('DD-MM-YYYY, HH:mm') }}</td>
+                        <td>{{ moment(record.date_sent).format('DD-MM-YYYY, HH:mm') }}</td>
                         <td class="delete-column">
-                        <a class="danger"
-                           href="{{ url_for('main.delete_record', record_id=record.id) }}", title="Delete record"><i class="mdi mdi-delete-outline danger" aria-hidden="true"></i></a>
-                    </td>
-                </tr>
+                            <button class="btn btn-danger " data-toggle="modal"
+                                    data-target="#DeleteModal{{ record.id }}"><i class="mdi mdi-delete-outline" aria-hidden="true"></i>
+                            </button>
+                        </td>
+                        </tr>
+
+
+                        <div id="DeleteModal{{ record.id }}" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Delete Airtime record: {{ record.sent_to }} - KShs {{ record.amount_sent }}</h4>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <ul class="footer-links">
+                                            <li>
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">
+                                                    Close
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <a class="btn btn-danger rounded-0" href="{{ url_for('main.delete_record', record_id=record.id) }}">Delete</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     {% endfor %}
 
                 <tfoot>
@@ -56,10 +82,13 @@
             <div class="panel panel-default">
                 <div class="panel-heading"><h4>% Spend per user</h4></div>
                 <div class="panel-body">
-                     <div id="myDiv"></div>
+                    <div id="myDiv"></div>
                 </div>
             </div>
         </div>
     </div>
+
+
+
 
 {% endblock %}

@@ -95,7 +95,19 @@ form input, form textarea, form select {
 #table_id_wrapper label {
 	font-weight: normal
 }
-.danger{color:#DC3545}
+.danger {
+	color: #DC3545
+}
+.modal-content {
+	background-color: #B3DCED;
+}
+.modal-footer {
+	border-top: 1px solid #89CAE3;
+}
+.modal-header {
+	padding: 15px;
+	border-bottom: none;
+}
 .rounded-4 {
 	-webkit-border-radius: 4px !important;
 	-moz-border-radius: 4px !important;

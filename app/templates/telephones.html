@@ -36,11 +36,34 @@
                     <td>{{ number.alias }}</td>
                     <td>{{ number.tel }}</td>
                     <td class="delete-column">
-                        <a class="btn btn-danger rounded-0"
-                           href="{{ url_for('main.delete_number', number_id=number.id) }}">Delete</a>
+                        <button class="btn btn-danger" data-toggle="modal"
+                                    data-target="#DeleteModal{{ number.id }}"><i class="mdi mdi-delete-outline" aria-hidden="true"></i>
+                        </button>
                     </td>
                 </tr>
-
+                       <div id="DeleteModal{{ number.id }}" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Delete Telephone #: {{ number.tel }} - {{ number.alias }}</h4>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <ul class="footer-links">
+                                            <li>
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">
+                                                    Close
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <a class="btn btn-danger rounded-0" href="{{ url_for('main.delete_number', delete_number_id=number.id) }}">Delete</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
             {% endfor %}
             </table>
        </div>

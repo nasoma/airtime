@@ -1,5 +1,5 @@
 #TODO
-#   prompt user before deleting records.
+#   upload users via csv
 
 
 from flask import render_template, Blueprint, flash, redirect, url_for
@@ -104,10 +104,10 @@ def number(number_id):
     return render_template('number.html', title=number.tel, number=number)
 
 
-@main.route('/accounts/<int:number_id>/delete', methods=['POST', 'GET'])
+@main.route('/accounts/<int:delete_number_id>/delete', methods=['POST', 'GET'])
 @login_required
-def delete_number(number_id):
-    number_to_delete = TelephoneNumbers.query.get_or_404(number_id)
+def delete_number(delete_number_id):
+    number_to_delete = TelephoneNumbers.query.get_or_404(delete_number_id)
     db.session.delete(number_to_delete)
     db.session.commit()
     flash(f'{number_to_delete} deleted! ', 'success')
