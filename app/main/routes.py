@@ -126,7 +126,7 @@ def new_number():
     return render_template('new.html', form=form)
 
 
-@main.route('/dashboard', methods=['POST', 'GET'])
+@main.route('/dashboard', methods=['GET'])
 @login_required
 def get_records():
     records = AirtimeSent.query.all()
