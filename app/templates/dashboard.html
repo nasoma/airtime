@@ -15,19 +15,24 @@
                     <th>To:</th>
                     <th>Amount</th>
                     <th>When</th>
+                    <th>Delete</th>
                 </tr>
                 </thead>
                 <tr>
                     {% for record in records %}
                         <td> {{ record.sent_to }}</td>
                         <td>{{ record.amount_sent }}</td>
-                        <td> {{ moment(record.date_sent).format('DD-MM-YYYY, h:mm:ss a') }}</td>
-                        </tr>
+                        <td> {{ moment(record.date_sent).format('DD-MM-YYYY, HH:mm') }}</td>
+                        <td class="delete-column">
+                        <a class="danger"
+                           href="{{ url_for('main.delete_record', record_id=record.id) }}", title="Delete record"><i class="mdi mdi-delete-outline danger" aria-hidden="true"></i></a>
+                    </td>
+                </tr>
                     {% endfor %}
 
                 <tfoot>
                 <tr>
-                    <th colspan="3" style="text-align:right">Total:</th>
+                    <th colspan="4" style="text-align:right">Total:</th>
                 </tr>
                 </tfoot>
             </table>

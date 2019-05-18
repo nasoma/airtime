@@ -1,6 +1,5 @@
 #TODO
-#   Inmplement delete of telephone records.
-#   On load sort airtime records according to time.
+#   prompt user before deleting records.
 
 
 from flask import render_template, Blueprint, flash, redirect, url_for
@@ -19,7 +18,7 @@ apikey = app.config['AT_API_KEY']
 
 
 @app.template_filter('round_off_balance')
-def reverse_filter(value):
+def round_off_filter(value):
     rounded_value = round(value)
     return rounded_value
 
@@ -113,6 +112,16 @@ def delete_number(number_id):
     db.session.commit()
     flash(f'{number_to_delete} deleted! ', 'success')
     return redirect(url_for('main.telephones'))
+
+
+@main.route('/record/<int:record_id>/delete', methods=['POST', 'GET'])
+@login_required
+def delete_record(record_id):
+    record_to_delete = AirtimeSent.query.get_or_404(record_id)
+    db.session.delete(record_to_delete)
+    db.session.commit()
+    flash(f'{record_to_delete} deleted! ', 'success')
+    return redirect(url_for('main.get_records'))
 
 
 @main.route('/new', methods=['POST', 'GET'])

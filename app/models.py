@@ -38,7 +38,7 @@ class TelephoneNumbers(db.Model):
     alias = db.Column(db.String(13))
 
     def __repr__(self):
-        return '{}'.format(self.tel)
+        return f"{self.tel}"
 
 
 class AirtimeSent(db.Model):
@@ -48,7 +48,7 @@ class AirtimeSent(db.Model):
     date_sent = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
     def __repr__(self):
-        return f" '{self.sent_to}' : '{self.amount_sent}'"
+        return f"{self.sent_to} - {self.amount_sent}"
 
 
 def numbers_query():

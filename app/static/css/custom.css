@@ -95,6 +95,7 @@ form input, form textarea, form select {
 #table_id_wrapper label {
 	font-weight: normal
 }
+.danger{color:#DC3545}
 .rounded-4 {
 	-webkit-border-radius: 4px !important;
 	-moz-border-radius: 4px !important;

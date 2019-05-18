@@ -22,7 +22,8 @@
 
 $(document).ready(function() {
     $('#table_id').DataTable( {
-        "footerCallback": function ( row, data, start, end, display ) {
+         "order": [[ 2, "desc" ]],
+         "footerCallback": function ( row, data, start, end, display ) {
             var api = this.api(), data;
 
             var intVal = function ( i ) {
@@ -31,7 +32,6 @@ $(document).ready(function() {
                     typeof i === 'number' ?
                         i : 0;
             };
-
             total = api
                 .column( 1 )
                 .data()
@@ -50,30 +50,28 @@ $(document).ready(function() {
                 'KShs '+pageTotal +' [ KShs '+ total +' Running Total ]'
             );
         }
-
     } );
-
 } );
 </script>
 
 
-    <script>
-var data = [{
-  values: {{ values }},
-  labels: {{ labels | safe}},
-  type: 'pie'
-}];
+<script>
+    var data = [{
+      values: {{ values }},
+      labels: {{ labels | safe}},
+      type: 'pie'
+    }];
 
-var layout = {
+    var layout = {
 
-};
+    };
 
-Plotly.newPlot('myDiv', data, layout, {responsive: true});
-    </script>
+    Plotly.newPlot('myDiv', data, layout, {responsive: true});
+</script>
 
 
 
-    <script src="{{ url_for('static', filename = 'js/main.js') }}"></script>
+<script src="{{ url_for('static', filename = 'js/main.js') }}"></script>
 
 {% endblock %}
 
@@ -154,7 +152,7 @@ Plotly.newPlot('myDiv', data, layout, {responsive: true});
 
         </div>
         <div class="footer navbar-fixed-bottom m4 ">
-            <div class="container">&copy; 2019. Airtime</div>
+            <div class="container">&copy; 2019. Airtime Management</div>
         </div>
     </div>
 
