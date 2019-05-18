@@ -1,3 +1,8 @@
+#TODO
+#   Inmplement delete of telephone records.
+#   Initialize airtime records to sort according to time.
+
+
 from flask import render_template, Blueprint, flash, redirect, url_for, jsonify
 from app import app, db
 from app.main.forms import SendSMS, SendAirtime, AddNumber
