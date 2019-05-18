@@ -115,7 +115,7 @@ Plotly.newPlot('myDiv', data, layout, {responsive: true});
             </li>
                   <li><a href="{{ url_for('users.logout') }}"><i class="mdi mdi-login" aria-hidden="true"></i>
                 Logout</a></li>
-                 <li> <a class="" href="#"><span class="balance">Bal: {{ credit_balance }}</span></a></li>
+                 <li> <a class="" href="#"><span class="balance">Bal: KShs {{ final_float | round_off_balance }}</span></a></li>
             {% else %}
              <li><a href="{{ url_for('users.login') }}"><i class="mdi mdi-login" aria-hidden="true"></i>
                 Login</a>

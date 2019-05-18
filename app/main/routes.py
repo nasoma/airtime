@@ -1,9 +1,9 @@
 #TODO
 #   Inmplement delete of telephone records.
-#   Initialize airtime records to sort according to time.
+#   On load sort airtime records according to time.
 
 
-from flask import render_template, Blueprint, flash, redirect, url_for, jsonify
+from flask import render_template, Blueprint, flash, redirect, url_for
 from app import app, db
 from app.main.forms import SendSMS, SendAirtime, AddNumber
 from app.models import TelephoneNumbers, AirtimeSent
@@ -18,19 +18,21 @@ username = app.config['AT_USERNAME']
 apikey = app.config['AT_API_KEY']
 
 
+@app.template_filter('round_off_balance')
+def reverse_filter(value):
+    rounded_value = round(value)
+    return rounded_value
+
+
 @app.context_processor
 def get_balance():
     africastalking.initialize(username, apikey)
     application = africastalking.Application
     results = application.fetch_application_data()
     credit_balance = results['UserData']['balance']
+    final_float = float(credit_balance.strip('KES '))
 
-    return dict(credit_balance=credit_balance)
-
-
-balance = get_balance()
-balance_value = balance.get('credit_balance')
-final_float = float(balance_value.lstrip('KES '))
+    return dict(final_float=final_float)
 
 
 @main.route('/send_sms', methods=['POST', 'GET'])
@@ -93,7 +95,7 @@ def send_airtime():
 @login_required
 def telephones():
     numbers = TelephoneNumbers.query.all()
-    return render_template('telephones.html', numbers=numbers, final_float=final_float)
+    return render_template('telephones.html', numbers=numbers)
 
 
 @main.route('/accounts/<int:number_id>/', methods=['GET'])
