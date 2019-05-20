@@ -17,7 +17,7 @@ def login():
     if login_form.validate_on_submit():
         user = User.query.filter_by(username=login_form.username.data).first()
         if user and bcrypt.check_password_hash(user.password, login_form.password.data):
-            login_user(user, remember=login_form.remember.data)
+            login_user(user)
             flash(f'Welcome {user.username}!', 'success')
             next_page = request.args.get('next')
             if next_page:
@@ -30,7 +30,7 @@ def login():
 
 
 @users.route('/register', methods=['POST', 'GET'])
-@login_required # Authorized IT personnel will create account.
+@login_required  # Authorized IT personnel will create account.
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
@@ -42,7 +42,7 @@ def register():
                     )
         db.session.add(user)
         db.session.commit()
-        flash('Your account has been created. You can now login.', 'success')
+        flash('Your account has been created!', 'success')
         return redirect(url_for('users.login'))
     return render_template('register.html', registration_form=registration_form)
 

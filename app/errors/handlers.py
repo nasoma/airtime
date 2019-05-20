@@ -12,6 +12,7 @@ def error_404(error):
 def error_403(error):
     return render_template('403.html'), 403
 
+
 @errors.app_errorhandler(401)
 def error_401(error):
     return render_template('403.html'), 401
