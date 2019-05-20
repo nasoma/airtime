@@ -115,10 +115,10 @@ $(document).ready(function() {
                 Logout</a></li>
                  <li> <a class="" href="#"><span class="balance">Bal: KShs {{ final_float | round_off_balance }}</span></a></li>
             {% else %}
-             <li><a href="{{ url_for('users.login') }}"><i class="mdi mdi-login" aria-hidden="true"></i>
+             <li class="highlight"><a href="{{ url_for('users.login') }}"><i class="mdi mdi-login" aria-hidden="true"></i>
                 Login</a>
             </li>
-            <li><a href="{{ url_for('users.register') }}"><i class="mdi mdi-account-plus" aria-hidden="true"></i>
+            <li class="highlight"><a href="{{ url_for('users.register') }}"><i class="mdi mdi-account-plus" aria-hidden="true"></i>
                 Register</a>
             </li>
 

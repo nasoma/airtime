@@ -1,5 +1,7 @@
 #TODO
 #   upload users via csv
+#   better styling with gradient background and gradient buttons for login and register links
+#   chnage input box to prepend +254
 
 
 from flask import render_template, Blueprint, flash, redirect, url_for
