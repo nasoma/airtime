@@ -1,273 +1,242 @@
 body {
-    background: #754F44;
-    font-family: 'Lato', sans-serif;
+	background: #F6F6F4;
+	font-family: 'Lato', sans-serif;
 }
-
 a {
-    color: #8F6938;
-    text-decoration: none;
+	color: #8F6938;
+	text-decoration: none;
 }
-
-.bg-balance {
-    background-color: #F2DEDE !important;
-    color: #a94442;
-    font-size: 16px !important;
-    border-color: #DDA8A8 !important;
-}
-
 .balance {
-    color: #000;
-    font-weight: normal;
-    font-size: 14px;
-    background: #D1EFFE;
-    padding: 5px 15px;
-    border: 2px solid #6DCBFA;
-    border-radius: 50px;
+	color: #000;
+	font-weight: normal;
+	font-size: 14px;
+	background: #D1EFFE;
+	padding: 5px 15px;
+	border: 2px solid #6DCBFA;
+	border-radius: 50px;
 }
-
 .btn-success {
-    color: #fff;
-    background-color: #D2B48C;
-    border-color: #C49C68;
+	color: #333;
+	background-color: #D2B48C;
+	border-color: #C49C68;
 }
-
+.btn-success:hover {
+	color: #fff;
+	background-color: #404033;
+	border-color: #24241D;
+}
 .dataTables_wrapper .dataTables_info, .dataTables_wrapper, .dataTables_filter, #table_id_length label {
-    color: #fff !important
+	color: #333 !important
 }
-
 .table {
-    margin-bottom: 0
+	margin-bottom: 0
 }
-
-.table-bordered, .table-bordered > tbody > tr > td, .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th {
-    border: 1px solid #C49C68;
+.table-bordered, .table-bordered>tbody>tr>td, .table-bordered>thead>tr>th, .table-bordered>tbody>tr>th {
+	border: 1px solid #939376;
 }
-
-.panel-default > .panel-heading {
-    color: #000;
-    background-color: #bea69f;
-    border-color: #AA8A81;
+.panel-default>.panel-heading {
+	color: #000;
+	background-color: #bea69f;
+	border-color: #AA8A81;
 }
-
 .panel-default {
-    border-color: #AA8A81;
-    border-radius: 0;
+	border-color: #AA8A81;
+	border-radius: 0;
 }
-
-table {
-    background-color: #d2b48c;
+.btn-danger {
+	color: #fff;
+	background-color: #5C5C49;
+	border-color: #404033;
+	border-radius: 2px;
 }
-
+.btn-danger:hover {
+	color: #fff;
+	background-color: #404033;
+	border-color: #24241D;
+	border-radius: 2px;
+}
+table, table.dataTable tbody tr.even {
+	background-color: #A9A992;
+}
 .panel {
-    background: #BEA69F
+	background: #BEA69F
 }
-
 .panel-body {
-    padding: 0;
+	padding: 0;
 }
-
-.table-striped > tbody > tr:nth-of-type(2n+1) {
-    background-color: #E66D4C;
+.table-striped>tbody>tr:nth-of-type(2n+1) {
+	background-color: #EBEBE6;
 }
-
 tr:hover {
-    background: #C49C68 !important;
+	background: #BFBFAE !important;
 }
-
 .nav li.highlight a {
-    background-image: linear-gradient(to right, #fdd692, #fabf7c, #f6a76b, #f28d5e, #ec7357) !important;
-    margin-left: 10px;
-    border-radius: 120px;
-    width: 150px;
-    text-align: center;
-    height: 40px;
-    line-height: 30px;
-    padding: 5px;
-    margin-top: 5px;
-    font-size: 17px;
-    color: #333 !important;
-    border: 1px solid #E04920;
-    box-shadow: 0 1px 5px 4px rgba(63, 63, 63, .03);
+	background-image: linear-gradient(to left, #0089ba, #0085c2, #0080c9, #007acf, #2c73d2);
+	!important;
+	margin-left: 10px;
+	border-radius: 120px;
+	width: 150px;
+	text-align: center;
+	height: 40px;
+	line-height: 30px;
+	padding: 5px;
+	margin-top: 5px;
+	font-size: 17px;
+	color: #fff !important;
+	border: 1px solid #0081cf;
+	box-shadow: 0 1px 5px 4px rgba(63, 63, 63, .03);
 }
-
 .well {
-    background: #D2B48C;
-    border: 1px solid #956E3B;
-    color: #8F6938;
-    box-shadow: 1px 2px 10px #000;
+	background: #C8E6FE;
+	border: 1px solid #7DC5FB;
+	color: #78785F;
+	border-radius: 0;
 }
-
+.register .well {
+	background: transparent;
+	border: none !important;
+	color: #8F6938;
+	box-shadow: none;
+}
 .errors {
-    font-size: 20px;
-    text-align: center;
-    background: #D2B48C;
-    border: 1px solid #956E3B;
-    color: #8F6938;
-    padding: 15px;
-    border-radius: 4px;
+	font-size: 20px;
+	text-align: center;
+	background: #EBEBE6;
+	border: 1px solid #D5D5CA;
+	color: #8F6938;
+	padding: 15px;
+	border-radius: 4px;
 }
-
-.nav > li > a {
-    font-size: 16px
+.nav>li>a {
+	font-size: 16px
 }
-
 .navbar {
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
 }
-
 .navbar-inverse {
-    border-color: #E66D4C
+	border-color: #02487E
 }
-
 .login li {
-    list-style-type: none;
-    font-size: 35px;
-    line-height: 70px
+	list-style-type: none;
+	font-size: 35px;
+	line-height: 70px
 }
-
 form input, form textarea, form select {
-    border-radius: 0 !important;
-    border: 1px solid #0398DB;
+	border-radius: 0 !important;
+	border: 1px solid #0398DB;
 }
-
 .btn-primary {
-    background: #EC7357;
-    border-radius: 0;
-    padding: 5px 25px;
-    border: 1px solid #013045
+	background: #B0B0B0;
+    color:#8F6938;
+	border-radius: 0;
+	padding: 5px 25px;
+	border: 1px solid #013045
 }
-
 .form {
-    background: #654236;
-    padding: 25px;
-    border-radius: 5px;
-    border: 1px solid #432C24;
-    color: #000;
-    box-shadow: 1px 2px 10px #000;
+	background: #E4E4E4;
+	padding: 25px;
+	border-radius: 0;
+	border: 1px solid #432C24;
+	color: #8F6938;
 }
-
-table tr {
-    box-shadow: 1px 2px 10px #000;
+.form input {
+	border: 1px solid #9E9E84
 }
-
+.btn-primary:hover {
+	background: #C53817;
+	border: 1px solid #972B11
+}
 .form label {
-    color: #fff;
-    font-weight: bold;
-    font-size: 10px;
+	color: #8F6938;
+	font-weight: normal;
+	font-size: 14px;
 }
-
 .myform input {
-    border-radius: 2px
+	border-radius: 2px
 }
-
 .bg-red, .bg-red a {
-    background: #E66D4C;
-    color: #fff !important;
+	background: #0264B0;
+	color: #fff !important;
 }
-
 .main-body {
-    margin-bottom: 120px
+	margin-bottom: 120px
 }
-
 .footer {
-    background-color: #bdbdbd;
-    padding: 15px;
+	background-color: #bdbdbd;
+	padding: 15px;
 }
-
 .footer-links li {
-    display: inline-block
+	display: inline-block
 }
-
 .p-15 {
-    padding: 5px 15px
+	padding: 5px 15px
 }
-
 #table_id_filter input, #table_id_filter select {
-    border: 1px solid #CEDBDB !important;
+	border: 1px solid #CEDBDB !important;
 }
-
 .rounded-0 {
-    -webkit-border-radius: 0 !important;
-    -moz-border-radius: 0 !important;
-    border-radius: 0 !important;
+	-webkit-border-radius: 0 !important;
+	-moz-border-radius: 0 !important;
+	border-radius: 0 !important;
 }
-
 .rounded-2 {
-    -webkit-border-radius: 2px !important;
-    -moz-border-radius: 2px !important;
-    border-radius: 2px !important;
+	-webkit-border-radius: 2px !important;
+	-moz-border-radius: 2px !important;
+	border-radius: 2px !important;
 }
-
 #table_id_wrapper label {
-    font-weight: normal
+	font-weight: normal
 }
-
 .danger {
-    color: #DC3545
+	color: #DC3545
 }
-
 .modal-content {
-    background-color: #B3DCED;
+	background-color: #B3DCED;
 }
-
 .modal-footer {
-    border-top: 1px solid #89CAE3;
+	border-top: 1px solid #89CAE3;
 }
-
 .modal-header {
-    padding: 15px;
-    border-bottom: none;
+	padding: 15px;
+	border-bottom: none;
 }
-
 .rounded-4 {
-    -webkit-border-radius: 4px !important;
-    -moz-border-radius: 4px !important;
-    border-radius: 4px !important;
+	-webkit-border-radius: 4px !important;
+	-moz-border-radius: 4px !important;
+	border-radius: 4px !important;
 }
-
 #table_id thead {
-    background: #D7D7D7;
-    color: #000
+	background: #D7D7D7;
+	color: #000
 }
-
 th {
-    white-space: nowrap;
+	white-space: nowrap;
 }
-
 tfoot tr th {
-    background: #855A4D !important;
+	background: #BDBDBD !important;
+	font-weight: normal !important;
 }
-
-table.dataTable tbody tr.even {
-    background-color: #D2B48C !important;
+	{
+	background-color: #D2B48C !important;
 }
-
-tfoot {
-    background: #6DCBFA !important;
-}
-
 .dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .paginate_button {
-    color: #fff !important;
+	color: #fff !important;
 }
-
 table.dataTable tfoot th, table.dataTable tfoot td {
-    padding: 10px 18px 6px 18px;
-    background: #fff;
-    border: none;
+	padding: 10px 18px 6px 18px;
+	background: #fff;
+	border: none;
 }
-
 .m-4 {
-    margin-bottom: 5px
+	margin-bottom: 5px
 }
-
 @media screen and (min-width: 800px) {
-    .pull-right-lg {
-        float: right
-    }
+	.pull-right-lg {
+		float: right
+	}
 }
-
 .login .navbar {
-    margin-bottom: 0;
+	margin-bottom: 0;
 }

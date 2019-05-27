@@ -4,7 +4,7 @@
     {{ super() }}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
     <link href="//cdn.materialdesignicons.com/3.6.95/css/materialdesignicons.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
 
 {% endblock %}
@@ -63,7 +63,7 @@ $(document).ready(function() {
     }];
 
     var layout = {
-
+title: '% Spend Per User',
     };
 
     Plotly.newPlot('myDiv', data, layout, {responsive: true});

@@ -30,7 +30,7 @@ def login():
 
 
 @users.route('/register', methods=['POST', 'GET'])
-@login_required  # Authorized IT personnel will create account.
+#@login_required  # Authorized IT personnel will create account.
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))

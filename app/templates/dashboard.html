@@ -10,87 +10,82 @@
     <div class="row">
         <div class="col-md-6">
 
-            <table id="table_id" class="table table-hover table-striped table-bordered ">
-                <thead>
-                <tr>
-                    <th>To:</th>
-                     <th>Amount</th>
-                    <th>When</th>
-                    <th>Delete</th>
-                </tr>
-                </thead>
-                <tr>
-                    {% for record in records %}
-                        <td>{{ record.sent_to }}</td>
 
-                        <td>{{ record.amount_sent }}</td>
-                        <td>{{ moment(record.date_sent).format('DD-MM-YYYY, HH:mm') }}</td>
-                        <td class="delete-column">
-                            <button class="btn btn-danger " data-toggle="modal"
-                                    data-target="#DeleteModal{{ record.id }}"><i class="mdi mdi-delete-outline" aria-hidden="true"></i>
-                            </button>
+                <table id="table_id" class="table table-hover table-striped table-bordered ">
+                    <thead>
+                    <tr>
+                        <th>To:</th>
+                        <th>Amount</th>
+                        <th>When</th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        {% for record in records %}
+                            <td>{{ record.sent_to }}</td>
 
-{#                        <input type="checkbox" name="do_delete" value="{{ record.id }}">#}
-                        </td>
-                        </tr>
+                            <td>{{ record.amount_sent }}</td>
+                            <td>{{ moment(record.date_sent).format('DD-MM-YYYY, HH:mm') }}</td>
+                            <td class="delete-column">
+                                <button class="btn btn-danger " data-toggle="modal"
+                                        data-target="#DeleteModal{{ record.id }}"><i class="mdi mdi-delete-outline"
+                                                                                     aria-hidden="true"></i>
+                                </button>
+
+                                {#                        <input type="checkbox" name="do_delete" value="{{ record.id }}">#}
+                            </td>
+                            </tr>
 
 
-                        <div id="DeleteModal{{ record.id }}" class="modal fade" role="dialog">
-                            <div class="modal-dialog">
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Delete Airtime record: {{ record.sent_to }} - KShs {{ record.amount_sent }}</h4>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <ul class="footer-links">
-                                            <li>
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal">
-                                                    Close
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <a class="btn btn-danger rounded-0" href="{{ url_for('main.delete_record', record_id=record.id) }}">Delete</a>
-                                            </li>
-                                        </ul>
+                            <div id="DeleteModal{{ record.id }}" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Delete Airtime record: {{ record.sent_to }} -
+                                                KShs {{ record.amount_sent }}</h4>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <ul class="footer-links">
+                                                <li>
+                                                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                                                        Close
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <a class="btn btn-danger rounded-0"
+                                                       href="{{ url_for('main.delete_record', record_id=record.id) }}">Delete</a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    {% endfor %}
+                        {% endfor %}
 
-                <tfoot>
-                <tr>
-                    <th colspan="4" style="text-align:right">Total:</th>
-                </tr>
-                </tfoot>
-            </table>
+                    <tfoot>
+                    <tr>
+                        <th colspan="4" style="text-align:right">Total:</th>
+                    </tr>
+                    </tfoot>
+                </table>
 
-        </div>
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading"><h4>Total Per User</h4></div>
-                <div class="panel-body">
-                    {{ user_table | safe }}
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-6">
         </div>
 
         <div class="col-md-6">
             <div class="panel panel-default">
-                <div class="panel-heading"><h4>% Spend per user</h4></div>
+
                 <div class="panel-body">
                     <div id="myDiv"></div>
                 </div>
             </div>
         </div>
+
     </div>
+
+
 
 
 
