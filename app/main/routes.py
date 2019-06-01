@@ -1,7 +1,8 @@
 #TODO
 #   upload users via csv
 #   better styling with gradient background and gradient buttons for login and register links
-#   chnage input box to prepend +254
+#   change input box to prepend +254
+#   use sendgrid to send email notifications when airtime is loaded
 
 
 from flask import render_template, Blueprint, flash, redirect, url_for
@@ -11,7 +12,7 @@ from app.models import TelephoneNumbers, AirtimeSent
 from flask_login import login_required
 import pandas as pd
 import africastalking
-
+import arrow
 
 main = Blueprint('main', __name__)
 
@@ -23,6 +24,13 @@ apikey = app.config['AT_API_KEY']
 def round_off_filter(value):
     rounded_value = round(value)
     return rounded_value
+
+
+@app.template_filter('human_time')
+def human_time_filter(sent_time):
+    human_time = arrow.get(sent_time)
+    show_time = human_time.humanize()
+    return show_time
 
 
 @app.context_processor
@@ -150,7 +158,7 @@ def get_records():
     labels = total_per_user['Name'].values.tolist()
     values = total_per_user['Amount'].values.tolist()
 
-    user_table = with_name_index .to_html(classes=['table', 'table-bordered', 'table-striped', 'table-hover'])
+    user_table = with_name_index.to_html(classes=['table', 'table-bordered', 'table-striped', 'table-hover'])
 
     return render_template('dashboard.html', records=records, user_table=user_table, values=values, labels=labels)
 

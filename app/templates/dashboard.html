@@ -3,14 +3,31 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 
+{% block styles %}
+    {{ super() }}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/tipr.css') }}">
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+
+<script src="{{ url_for('static', filename = 'js/tipr.min.js') }}"></script>
+
+<script>
+$(document).ready(function() {
+     $('.tip').tipr();
+});
+</script>
+
+{% endblock %}
+
 {% block maincontent %}
 
-    <div class="container">
-
+<div class="container">
     <div class="row">
         <div class="col-md-6">
-
-
                 <table id="table_id" class="table table-hover table-striped table-bordered ">
                     <thead>
                     <tr>
@@ -25,7 +42,7 @@
                             <td>{{ record.sent_to }}</td>
 
                             <td>{{ record.amount_sent }}</td>
-                            <td>{{ moment(record.date_sent).format('DD-MM-YYYY, HH:mm') }}</td>
+                            <td><span class="tip" data-tip="{{ record.date_sent | human_time }}">{{ moment(record.date_sent).format('DD-MM-YYYY, HH:mm') }}</span></td>
                             <td class="delete-column">
                                 <button class="btn btn-danger " data-toggle="modal"
                                         data-target="#DeleteModal{{ record.id }}"><i class="mdi mdi-delete-outline"
@@ -70,8 +87,6 @@
                     </tr>
                     </tfoot>
                 </table>
-
-
         </div>
 
         <div class="col-md-6">
@@ -82,12 +97,6 @@
                 </div>
             </div>
         </div>
-
-    </div>
-
-
-
-
-
-
+</div>
+</div>
 {% endblock %}

@@ -2,6 +2,7 @@
 
 {% block styles %}
     {{ super() }}
+
     <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
     <link href="//cdn.materialdesignicons.com/3.6.95/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
@@ -54,7 +55,6 @@ $(document).ready(function() {
 } );
 </script>
 
-
 <script>
     var data = [{
       values: {{ values }},
@@ -69,9 +69,8 @@ title: '% Spend Per User',
     Plotly.newPlot('myDiv', data, layout, {responsive: true});
 </script>
 
-
-
 <script src="{{ url_for('static', filename = 'js/main.js') }}"></script>
+
 
 {% endblock %}
 
@@ -157,5 +156,3 @@ title: '% Spend Per User',
     </div>
 
 {% endblock %}
-
-
