@@ -33,6 +33,12 @@ def human_time_filter(sent_time):
     return show_time
 
 
+@app.template_filter('format_time')
+def format_time_filter(db_time):
+    formatted_time = arrow.get(db_time).format('YYYY-MM-DD HH:mm')
+    return formatted_time
+
+
 @app.context_processor
 def get_balance():
     africastalking.initialize(username, apikey)
@@ -85,12 +91,12 @@ def send_airtime():
         value = form.airtime_value.data
 
         try:
-            airtime.send(to, value, currency_code=app.config['AT_CURRENCY_CODE'])
+            #airtime.send(to, value, currency_code=app.config['AT_CURRENCY_CODE'])
             save_airtime = AirtimeSent(amount_sent=value, sent_to=saved_tel)
             db.session.add(save_airtime)
             db.session.commit()
-            res = application.fetch_application_data()
-            my_balance = res['UserData']['balance']
+            #res = application.fetch_application_data()
+            #my_balance = res['UserData']['balance']
             flash(f'You have successfully send airtime worth KShs: {value} to {to}! Your balance is {my_balance}',
                   'success')
         except Exception as e:

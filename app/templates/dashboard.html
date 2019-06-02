@@ -40,9 +40,8 @@ $(document).ready(function() {
                     <tr>
                         {% for record in records %}
                             <td>{{ record.sent_to }}</td>
-
                             <td>{{ record.amount_sent }}</td>
-                            <td><span class="tip" data-tip="{{ record.date_sent | human_time }}">{{ moment(record.date_sent).format('DD-MM-YYYY, HH:mm') }}</span></td>
+                           <td><span class="tip" data-tip="{{ record.date_sent | human_time }}">{{ record.date_sent | format_time }}</span></td>
                             <td class="delete-column">
                                 <button class="btn btn-danger " data-toggle="modal"
                                         data-target="#DeleteModal{{ record.id }}"><i class="mdi mdi-delete-outline"
