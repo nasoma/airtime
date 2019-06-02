@@ -91,12 +91,12 @@ def send_airtime():
         value = form.airtime_value.data
 
         try:
-            #airtime.send(to, value, currency_code=app.config['AT_CURRENCY_CODE'])
+            airtime.send(to, value, currency_code=app.config['AT_CURRENCY_CODE'])
             save_airtime = AirtimeSent(amount_sent=value, sent_to=saved_tel)
             db.session.add(save_airtime)
             db.session.commit()
-            #res = application.fetch_application_data()
-            #my_balance = res['UserData']['balance']
+            res = application.fetch_application_data()
+            my_balance = res['UserData']['balance']
             flash(f'You have successfully send airtime worth KShs: {value} to {to}! Your balance is {my_balance}',
                   'success')
         except Exception as e:

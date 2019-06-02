@@ -3,7 +3,6 @@ from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
 from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
-from flask_moment import Moment
 from flask_bcrypt import Bcrypt
 import os
 
@@ -16,7 +15,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
 app.config.from_object('config.DevConfig')
 bootstrap = Bootstrap(app)
 login_manager = LoginManager(app)
-moment = Moment(app)
 db = SQLAlchemy(app)
 mail = Mail(app)
 bcrypt = Bcrypt(app)
