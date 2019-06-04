@@ -218,9 +218,7 @@ tfoot tr th {
 	background: #BDBDBD !important;
 	font-weight: normal !important;
 }
-	{
-	background-color: #D2B48C !important;
-}
+
 .dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .paginate_button {
 	color: #fff !important;
 }

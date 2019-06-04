@@ -2,17 +2,19 @@
 #   upload users via csv
 #   better styling with gradient background and gradient buttons for login and register links
 #   change input box to prepend +254
-#   use sendgrid to send email notifications when airtime is loaded
+#   use sendgrid (replace with flask-mail) to send email notifications when airtime is loaded
 
 
 from flask import render_template, Blueprint, flash, redirect, url_for
 from app import app, db
-from app.main.forms import SendSMS, SendAirtime, AddNumber
+from app.main.forms import SendAirtime, AddNumber
 from app.models import TelephoneNumbers, AirtimeSent
+from app.users.utilities import airtime_mail, current_date
 from flask_login import login_required
 import pandas as pd
 import africastalking
 import arrow
+
 
 main = Blueprint('main', __name__)
 
@@ -50,35 +52,10 @@ def get_balance():
     return dict(final_float=final_float)
 
 
-@main.route('/send_sms', methods=['POST', 'GET'])
-@login_required
-def send_sms():
-    form = SendSMS()
-    to = form.to.data
-    message = form.message.data
-
-    africastalking.initialize(username, apikey)
-
-    sms = africastalking.SMS
-
-    application = africastalking.Application
-
-    if form.validate_on_submit():
-        try:
-            sms.send(message, [to])
-            res = application.fetch_application_data()
-            my_balance = res['UserData']['balance']
-            flash(f'Your message has been successfully sent to {to}! Your balance is {my_balance}', 'success')
-
-        except Exception as e:
-            flash(f'Error! {e}', 'danger')
-
-    return render_template('send_sms.html', form=form)
-
-
 @main.route('/send_airtime', methods=['POST', 'GET'])
 @login_required
 def send_airtime():
+
     form = SendAirtime()
     africastalking.initialize(username, apikey)
 
@@ -95,10 +72,13 @@ def send_airtime():
             save_airtime = AirtimeSent(amount_sent=value, sent_to=saved_tel)
             db.session.add(save_airtime)
             db.session.commit()
+            mail_date = current_date()
+
             res = application.fetch_application_data()
             my_balance = res['UserData']['balance']
             flash(f'You have successfully send airtime worth KShs: {value} to {to}! Your balance is {my_balance}',
                   'success')
+            airtime_mail(value, saved_tel, mail_date, my_balance)
         except Exception as e:
             flash(f'Airtime transfer failed: {e}', 'danger')
 

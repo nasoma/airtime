@@ -1,3 +1,3 @@
-# Tazama Group SMS/Airtime Dashboard
+# Tazama Group Airtime Dashboard
 
-Flask App that uses AfricasTalking API to send SMS notifications and Airtime.
+Flask App that uses AfricasTalking API for airtime distribution.
