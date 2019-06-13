@@ -69,7 +69,7 @@ def send_airtime():
         value = form.airtime_value.data
 
         try:
-            #airtime.send(to, value, currency_code=app.config['AT_CURRENCY_CODE'])
+            airtime.send(to, value, currency_code=app.config['AT_CURRENCY_CODE'])
             save_airtime = AirtimeSent(amount_sent=value, sent_to=saved_tel)
             db.session.add(save_airtime)
             db.session.commit()
