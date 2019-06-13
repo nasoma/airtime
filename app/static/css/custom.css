@@ -15,6 +15,7 @@ a {
 	border: 2px solid #6DCBFA;
 	border-radius: 50px;
 }
+.table > tbody > tr > td{vertical-align:middle}
 .btn-success {
 	color: #333;
 	background-color: #D2B48C;
