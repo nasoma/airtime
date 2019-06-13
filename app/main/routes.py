@@ -37,7 +37,8 @@ def human_time_filter(sent_time):
 
 @app.template_filter('format_time')
 def format_time_filter(db_time):
-    formatted_time = arrow.get(db_time).format('YYYY-MM-DD HH:mm')
+    saved_time = arrow.get(db_time)
+    formatted_time = saved_time.to('Africa/Nairobi').format('YYYY-MM-DD HH:mm')
     return formatted_time
 
 
@@ -68,7 +69,7 @@ def send_airtime():
         value = form.airtime_value.data
 
         try:
-            airtime.send(to, value, currency_code=app.config['AT_CURRENCY_CODE'])
+            #airtime.send(to, value, currency_code=app.config['AT_CURRENCY_CODE'])
             save_airtime = AirtimeSent(amount_sent=value, sent_to=saved_tel)
             db.session.add(save_airtime)
             db.session.commit()

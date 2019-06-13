@@ -35,7 +35,6 @@ def airtime_mail(amount, telephone_number, date, balance):
 
 
 def current_date():
-    date = arrow.utcnow().format('DD/MM/YYYY HH:mm')
+    date = arrow.utcnow().to('Africa/Nairobi').format('YYYY-MM-DD HH:mm')
     mail_date = str(date)
     return mail_date
-
