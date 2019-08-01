@@ -127,7 +127,29 @@ title: '% Spend Per Account',
             </li>
                   <li><a href="{{ url_for('users.logout') }}"><i class="mdi mdi-login" aria-hidden="true"></i>
                 Logout</a></li>
-                 <li> <a class="" href="#"><span class="balance">Bal: KShs {{ final_float | round_off_balance }}</span></a></li>
+
+
+
+
+                 <li> <a class="" href="#">
+                     {% if final_float < 150 %}
+
+                     <span class="balance blink-1">Bal: KShs {{ final_float | round_off_balance }}</span>
+
+                         {% else %}
+                         <span class="balance_low blink-1">Bal: KShs {{ final_float | round_off_balance }}</span>
+                    {% endif %}
+
+
+
+
+
+                         </a></li>
+
+
+
+
+
             {% else %}
              <li class="highlight"><a href="{{ url_for('users.login') }}"><i class="mdi mdi-login" aria-hidden="true"></i>
                 Login</a>

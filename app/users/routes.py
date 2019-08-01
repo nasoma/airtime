@@ -12,7 +12,7 @@ users = Blueprint('users', __name__)
 @users.route('/login', methods=['POST', 'GET'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('main.telephones'))
+        return redirect(url_for('main.send_airtime'))
     login_form = LoginForm()
     if login_form.validate_on_submit():
         user = User.query.filter_by(username=login_form.username.data).first()
@@ -30,7 +30,7 @@ def login():
 
 
 @users.route('/register', methods=['POST', 'GET'])
-@login_required   #Authorized IT personnel will create account.
+#@login_required   #Authorized IT personnel will create account.
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
