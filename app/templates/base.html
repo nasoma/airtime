@@ -133,11 +133,11 @@ title: '% Spend Per Account',
 
                  <li> <a class="" href="#">
                      {% if final_float < 150 %}
+                        <span class="balance_low blink-1">Bal: KShs {{ final_float | round_off_balance }}</span>
 
-                     <span class="balance blink-1">Bal: KShs {{ final_float | round_off_balance }}</span>
 
-                         {% else %}
-                         <span class="balance_low blink-1">Bal: KShs {{ final_float | round_off_balance }}</span>
+                     {% else %}
+                          <span class="balance ">Bal: KShs {{ final_float | round_off_balance }}</span>
                     {% endif %}
 
 
