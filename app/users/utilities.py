@@ -18,7 +18,7 @@ def send_reset_email(user, template, **kwargs):
 def airtime_mail(amount, telephone_number, date, balance):
     message = Mail(
         from_email=app.config['MAIL_SENDER'],
-        to_emails='imbayi@outlook.com'
+        to_emails=app.config['SENDGRIG_EMAIL']
     )
 
     message.dynamic_template_data = {
@@ -28,7 +28,7 @@ def airtime_mail(amount, telephone_number, date, balance):
         'date': date,
         'balance': balance
     }
-    message.template_id = 'd-2b1a13d647ef4b329acb7e3e63c41f97'
+    message.template_id = app.config['SENDGRID_TEMPLATE_ID']
 
     sg = SendGridAPIClient(app.config['SENDGRID_API_KEY'])
     response = sg.send(message)
