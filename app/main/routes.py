@@ -1,8 +1,8 @@
 #TODO
 #   upload users via csv
-#   better styling with gradient background and gradient buttons for login and register links
+#   use material css or tailwind
 #   change input box to prepend +254
-#   use sendgrid (replace with flask-mail) to send email notifications when airtime is loaded
+#
 
 
 from flask import render_template, Blueprint, flash, redirect, url_for
@@ -56,6 +56,8 @@ def get_balance():
 @main.route('/send_airtime', methods=['POST', 'GET'])
 @login_required
 def send_airtime():
+    load_balance = get_balance()
+    starting_balance = load_balance.get('final_float') # airtime balance when app loads
 
     form = SendAirtime()
     africastalking.initialize(username, apikey)
@@ -70,18 +72,25 @@ def send_airtime():
 
         try:
             airtime.send(to, value, currency_code=app.config['AT_CURRENCY_CODE'])
-            save_airtime = AirtimeSent(amount_sent=value, sent_to=saved_tel)
-            db.session.add(save_airtime)
-            db.session.commit()
-            mail_date = current_date()
-
             res = application.fetch_application_data()
+
             my_balance = res['UserData']['balance']
-            flash(f'You have successfully send airtime worth KShs: {value} to {to}! Your balance is {my_balance}',
-                  'success')
-            airtime_mail(value, saved_tel, mail_date, my_balance)
+            my_balance_float = float(my_balance.strip('KES '))
+
+            if my_balance_float < starting_balance:
+                save_airtime = AirtimeSent(amount_sent=value, sent_to=saved_tel)
+                db.session.add(save_airtime)
+                db.session.commit()
+                mail_date = current_date()
+
+                flash(f'You have successfully send airtime worth KShs: {value} to {to}! Your balance is {my_balance}',
+                      'success')
+                airtime_mail(value, saved_tel, mail_date, my_balance)
+            else:
+                flash('Airtime transfer failed, please try again after a few minutes', 'danger')
+
         except Exception as e:
-            flash(f'Airtime transfer failed: {e}', 'danger')
+            pass
 
     return render_template('send_airtime.html', form=form)
 

@@ -31,7 +31,7 @@ class SendAirtime(FlaskForm):
 
 class AddNumber(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
-    telephone = StringField('Telephone Number', validators=[DataRequired()])
+    telephone = StringField('Telephone Number (+2547XXXXXXXX)', validators=[DataRequired()])
     submit = SubmitField('Add')
 
 
