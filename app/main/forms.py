@@ -21,7 +21,7 @@ class SendSMS(FlaskForm):
 class SendAirtime(FlaskForm):
     to = QuerySelectField(query_factory=numbers_query, allow_blank=False, get_label='alias')
     airtime_value = IntegerField('Airtime Value',
-                                 render_kw={'placeholder': 'Airtime value'},
+                                 render_kw={'placeholder': ' Ksh 5 - 4000'},
                                  validators=[DataRequired(),
                                              NumberRange(min=1, max=4000,
                                                          message='Airtime value must be between Ksh 5 - 4000')])
