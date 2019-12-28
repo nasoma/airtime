@@ -1,7 +1,10 @@
 #TODO
 #   upload users via csv
-#   use material css or tailwind
+#   consider use of material css/Bulma or tailwind
 #   change input box to prepend +254
+#   inlude a pandas report on dashboard page
+#   include email address in user accounts data
+#   generate PDF with details of airtime and sent to user's email
 #
 
 
