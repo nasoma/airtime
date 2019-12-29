@@ -100,10 +100,10 @@ tr:hover {
 	box-shadow: 0 1px 5px 4px rgba(63, 63, 63, .03);
 }
 .well {
-	background: #C8E6FE;
-	border: 1px solid #7DC5FB;
-	color: #78785F;
+	background: #F6F6F4;
+	border: none !important;
 	border-radius: 0;
+	box-shadow: none;
 }
 .register .well {
 	background: transparent;
