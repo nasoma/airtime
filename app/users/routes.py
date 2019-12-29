@@ -29,6 +29,8 @@ def login():
     return render_template('login.html', loginform=login_form)
 
 
+
+"""
 @users.route('/register', methods=['POST', 'GET'])
 #@login_required   #Authorized IT personnel will create account.
 def register():
@@ -45,6 +47,8 @@ def register():
         flash('Your account has been created!', 'success')
         return redirect(url_for('users.login'))
     return render_template('register.html', registration_form=registration_form)
+
+"""
 
 
 @users.route('/logout')
