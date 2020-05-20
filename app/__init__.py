@@ -18,7 +18,7 @@ sentry_sdk.init(
 app = Flask(__name__)
 
 
-with open('/etc/config.json') as config_file:
+with open('etc/config.json') as config_file:
     config = json.load(config_file)
 
 
