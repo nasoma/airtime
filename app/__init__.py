@@ -5,8 +5,22 @@ from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 import os
+import json
+import sentry_sdk
+from sentry_sdk.integrations.flask import FlaskIntegration
+
+sentry_sdk.init(
+    dsn="https://8aa77933871d4416b255f229d23bffed@sentry.io/1868035",
+    integrations=[FlaskIntegration()]
+)
+
 
 app = Flask(__name__)
+
+
+with open('etc/config.json') as config_file:
+    config = json.load(config_file)
+
 
 db_path = os.path.join(os.path.dirname(__file__), 'app.db')
 db_uri = f'sqlite:///{db_path}'
