@@ -1,19 +1,19 @@
 {% extends 'bootstrap/base.html' %}
 
 {% block styles %}
-    {{ super() }}
+{{ super() }}
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
-    <link href="//cdn.materialdesignicons.com/3.6.95/css/materialdesignicons.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-    <link href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+<link href="//cdn.materialdesignicons.com/3.6.95/css/materialdesignicons.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<link href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css" rel="stylesheet" />
 
 
 {% endblock %}
 
 {% block scripts %}
-    {{ super() }}
+{{ super() }}
 
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
@@ -28,8 +28,8 @@
 
 <script>
 
-$(document).ready(function() {
-    $('#table_id').DataTable( {
+    $(document).ready(function () {
+        $('#table_id').DataTable({
             dom: 'Bfrtip',
             buttons: [
                 {
@@ -37,53 +37,53 @@ $(document).ready(function() {
                     title: 'Airtime Spend Summary',
 
                 },
-            'csv', 'excel',  'print'
-                ],
-        "pageLength": 5,
-         "order": [[ 2, "desc" ]],
-         "footerCallback": function ( row, data, start, end, display ) {
-            var api = this.api(), data;
+                'csv', 'excel', 'print'
+            ],
+            "pageLength": 5,
+            "order": [[2, "desc"]],
+            "footerCallback": function (row, data, start, end, display) {
+                var api = this.api(), data;
 
-            var intVal = function ( i ) {
-                return typeof i === 'string' ?
-                    i.replace(/[\$,]/g, '')*1 :
-                    typeof i === 'number' ?
-                        i : 0;
-            };
-            total = api
-                .column( 1 )
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
+                var intVal = function (i) {
+                    return typeof i === 'string' ?
+                        i.replace(/[\$,]/g, '') * 1 :
+                        typeof i === 'number' ?
+                            i : 0;
+                };
+                total = api
+                    .column(1)
+                    .data()
+                    .reduce(function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0);
 
-            pageTotal = api
-                .column( 1, { page: 'current'} )
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
+                pageTotal = api
+                    .column(1, { page: 'current' })
+                    .data()
+                    .reduce(function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0);
 
-            $( api.column( 1 ).footer() ).html(
-                'KShs '+pageTotal +' [ KShs '+ total +' Running Total ]'
-            );
-        }
-    } );
-} );
+                $(api.column(1).footer()).html(
+                    'KShs ' + pageTotal + ' [ KShs ' + total + ' Running Total ]'
+                );
+            }
+        });
+    });
 </script>
 
 <script>
     var data = [{
-      values: {{ values }},
-      labels: {{ labels | safe}},
-      type: 'pie'
+        values: {{ values }},
+    labels: { { labels | safe } },
+    type: 'pie'
     }];
 
     var layout = {
-title: '% Spend Per Account',
+        title: '% Spend Per Account',
     };
 
-    Plotly.newPlot('myDiv', data, layout, {responsive: true});
+    Plotly.newPlot('myDiv', data, layout, { responsive: true });
 </script>
 
 <script src="{{ url_for('static', filename = 'js/main.js') }}"></script>
@@ -91,105 +91,106 @@ title: '% Spend Per Account',
 
 {% endblock %}
 
-{% block title %} Airtime Purchase & Distribution - Tazama Data  {% endblock %}
+{% block title %} Airtime Purchase & Distribution - Tazama Data {% endblock %}
 
 {% block navbar %}
 
 <div class="navbar navbar-inverse bg-red" role="navigation">
-<div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle"
-                        data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="{{ url_for('users.login') }}" class="navbar-brand">Tazama Data Airtime App</a>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="{{ url_for('users.login') }}" class="navbar-brand">Tazama Data Airtime App</a>
+                </div>
+
             </div>
+            <div class="col-md-8">
+                <ul class="nav navbar-nav navbar-collapse collapse pull-right-lg">
 
-        </div>
-        <div class="col-md-8">
-        <ul class="nav navbar-nav navbar-collapse collapse pull-right-lg">
+                    {% if current_user.is_authenticated %}
+                    <li><a href="{{ url_for('main.telephones') }}"><i class="mdi mdi-account-badge-horizontal-outline"
+                                aria-hidden="true"></i> Accounts</a></li>
+                    <li><a href="{{ url_for('main.send_airtime') }}"><i class="mdi mdi-cellphone"
+                                aria-hidden="true"></i> Airtime</a>
+                    </li>
 
-            {% if current_user.is_authenticated %}
-             <li><a href="{{ url_for('main.telephones') }}"><i
-                    class="mdi mdi-account-badge-horizontal-outline"
-                    aria-hidden="true"></i> Accounts</a></li>
-            <li><a href="{{ url_for('main.send_airtime') }}"><i class="mdi mdi-cellphone"
-                                                                aria-hidden="true"></i> Airtime</a>
-            </li>
-
-             <li><a href="{{ url_for('main.get_records') }}"><i class="mdi mdi-view-dashboard" aria-hidden="true"></i>
-                Dashboard</a>
-            </li>
-                  <li><a href="{{ url_for('users.logout') }}"><i class="mdi mdi-login" aria-hidden="true"></i>
-                Logout</a></li>
+                    <li><a href="{{ url_for('main.get_records') }}"><i class="mdi mdi-view-dashboard"
+                                aria-hidden="true"></i>
+                            Dashboard</a>
+                    </li>
+                    <li><a href="{{ url_for('users.logout') }}"><i class="mdi mdi-login" aria-hidden="true"></i>
+                            Logout</a></li>
 
 
 
 
-                 <li> <a class="" href="#">
-                     {% if final_float < 150 %}
-                        <span class="balance_low blink-1">Bal: KShs {{ final_float | round_off_balance }}</span>
+                    <li> <a class="" href="#">
+                            {% if final_float < 150 %} <span class="balance_low blink-1">Bal: KShs {{ final_float |
+                                round_off_balance }}</span>
 
 
-                     {% else %}
-                          <span class="balance ">Bal: KShs {{ final_float | round_off_balance }}</span>
+                                {% else %}
+                                <span class="balance ">Bal: KShs {{ final_float | round_off_balance }}</span>
+                                {% endif %}
+
+
+
+
+
+                        </a></li>
+
+
+
+
+
+                    {% else %}
+                    <li class="highlight"><a href="{{ url_for('users.login') }}"><i class="mdi mdi-login"
+                                aria-hidden="true"></i>
+                            Login</a>
+                    </li>
+                    <li class="highlight"><a href="{{ url_for('users.register') }}"><i class="mdi mdi-account-plus"
+                                aria-hidden="true"></i>
+                            Register</a>
+                    </li>
+
                     {% endif %}
-
-
-
-
-
-                         </a></li>
-
-
-
-
-
-            {% else %}
-             <li class="highlight"><a href="{{ url_for('users.login') }}"><i class="mdi mdi-login" aria-hidden="true"></i>
-                Login</a>
-            </li>
-            <li class="highlight"><a href="{{ url_for('users.register') }}"><i class="mdi mdi-account-plus" aria-hidden="true"></i>
-                Register</a>
-            </li>
-
-            {% endif %}
-        </ul>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
 </div>
 
 {% endblock %}
 
 {% block content %}
 
-    <div class="container main-body">
-        <div class="row">
-            <div class="col-md-12">
-                {% with messages =  get_flashed_messages(with_categories=True) %}
-                    {% if messages %}
-                        {% for category, message in messages %}
-                            <div class="alert alert-{{ category }}">
-                                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                {{ message }}
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-                {% endwith %}
-
-                {% block maincontent %}{% endblock %}
+<div class="container main-body">
+    <div class="row">
+        <div class="col-md-12">
+            {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ message }}
             </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
 
+            {% block maincontent %}{% endblock %}
         </div>
-        <div class="footer navbar-fixed-bottom m4 ">
-            <div class="container">&copy; 2019. Tazama Data</div>
-        </div>
+
     </div>
+    <div class="footer navbar-fixed-bottom m4 ">
+        <div class="container">&copy; 2023. Tazama Data</div>
+    </div>
+</div>
 
 {% endblock %}
